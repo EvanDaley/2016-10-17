@@ -42,7 +42,7 @@ public class MenuController : MonoBehaviour {
 	void CenterMenu()
 	{
 		menu.transform.position = physicsPlayer.transform.position;
-		menu.transform.forward = Camera.main.transform.forward;
+		menu.transform.forward = physicsPlayer.transform.forward;
 	}
 
 	void Awake()
@@ -57,6 +57,8 @@ public class MenuController : MonoBehaviour {
 			DisplayMenu = true;
 		}
 	}
+
+
 
 	public void MoveCharacter(MoveMenuOption moveOption)
 	{

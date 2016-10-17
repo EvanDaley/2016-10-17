@@ -31,6 +31,60 @@ public class PhysicsPlayer : MonoBehaviour {
 
 		//Vector3 newRotation = new Vector3 (0, Camera.main.transform.eulerAngles.y, 0);
 		//transform.eulerAngles = newRotation;
+	
+
+
+		if (Input.GetKeyDown (KeyCode.LeftControl))
+		{
+			if (Input.GetAxis ("Vertical") > .1f)
+			{
+				//print ("up");
+				SetMove (Camera.main.transform.forward);
+			}
+
+			if (Input.GetAxis ("Vertical") < -.1f)
+			{
+				//print ("down");
+				SetMove (-Camera.main.transform.forward);
+			}
+
+			if (Input.GetAxis ("Horizontal") > .1f)
+			{
+				//print ("right");
+				Rotate(Vector3.up);
+			}
+
+			if (Input.GetAxis ("Horizontal") < -.1f)
+			{
+				//print ("left");
+				Rotate(Vector3.down);
+			}
+		} else
+		{
+			if (Input.GetAxis ("Vertical") > .1f)
+			{
+				//print ("up");
+				SetMove (Camera.main.transform.forward);
+			}
+
+			if (Input.GetAxis ("Vertical") < -.1f)
+			{
+				//print ("down");
+				SetMove (-Camera.main.transform.forward);
+			}
+
+			if (Input.GetAxis ("Horizontal") > .1f)
+			{
+				//print ("right");
+				Rotate(Vector3.up);
+			}
+
+			if (Input.GetAxis ("Horizontal") < -.1f)
+			{
+				//print ("left");
+				Rotate(Vector3.down);
+			}
+		}
 	}
 
 	public void SetMove(Vector3 direction)
@@ -48,7 +102,7 @@ public class PhysicsPlayer : MonoBehaviour {
 
 	public void Rotate(Vector3 rotateDirection)
 	{
-		
+		transform.Rotate (rotateDirection * rotateSpeed);
 	}
 
 
