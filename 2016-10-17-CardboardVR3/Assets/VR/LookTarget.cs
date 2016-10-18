@@ -9,6 +9,9 @@ public class LookTarget : MonoBehaviour, IGvrGazeResponder {
 	public Color hitColor = Color.green;
 	public Color nonhitColor = Color.red;
 
+	private float stareTriggerCooldown = 0;
+	private bool lookedAt = false;
+
 	void Start() {
 		//startingPosition = transform.localPosition;
 		SetGazedAt(false);
@@ -19,6 +22,12 @@ public class LookTarget : MonoBehaviour, IGvrGazeResponder {
 		if (GvrViewer.Instance.BackButtonPressed) {
 			Application.Quit();
 		}
+
+		if (lookedAt && Time.time > stareTriggerCooldown)
+		{
+			FireEvent ();
+			stareTriggerCooldown = Time.time + MenuSettings.Instance.stareTriggerLength;
+		}
 	}
 
 	void OnEnable()
@@ -28,8 +37,14 @@ public class LookTarget : MonoBehaviour, IGvrGazeResponder {
 
 	public void SetGazedAt(bool gazedAt) {
 		GetComponent<Renderer>().material.color = gazedAt ? hitColor : nonhitColor;
+		lookedAt = gazedAt;
+
+		if (gazedAt)
+			stareTriggerCooldown = Time.time + MenuSettings.Instance.stareTriggerLength;
 	}
 		
+
+
 	public virtual void FireEvent() 
 	{
 
