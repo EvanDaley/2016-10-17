@@ -5,7 +5,7 @@ public class MenuSettings : MonoBehaviour {
 
 	public static MenuSettings Instance;
 
-	public float stareTriggerLength = .3f;
+	public float stareTriggerExtraTime = .3f;
 
 	void Start () 
 	{
