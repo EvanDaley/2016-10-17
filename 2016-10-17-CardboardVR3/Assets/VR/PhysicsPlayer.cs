@@ -31,8 +31,6 @@ public class PhysicsPlayer : MonoBehaviour {
 
 		//Vector3 newRotation = new Vector3 (0, Camera.main.transform.eulerAngles.y, 0);
 		//transform.eulerAngles = newRotation;
-	
-
 
 		if (Input.GetKeyDown (KeyCode.LeftControl))
 		{

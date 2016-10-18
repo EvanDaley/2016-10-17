@@ -19,5 +19,6 @@ public enum SubMenuType
 	scaleCursor,
 	options,
 	create,
-	escape
+	escape,
+	center
 }

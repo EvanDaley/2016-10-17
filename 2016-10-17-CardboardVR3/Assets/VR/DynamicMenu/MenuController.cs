@@ -42,7 +42,9 @@ public class MenuController : MonoBehaviour {
 	void CenterMenu()
 	{
 		menu.transform.position = physicsPlayer.transform.position;
-		menu.transform.forward = physicsPlayer.transform.forward;
+
+		Vector3 forward = new Vector3 (Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
+		menu.transform.forward = forward;
 	}
 
 	void Awake()
@@ -57,8 +59,6 @@ public class MenuController : MonoBehaviour {
 			DisplayMenu = true;
 		}
 	}
-
-
 
 	public void MoveCharacter(MoveMenuOption moveOption)
 	{
@@ -81,15 +81,17 @@ public class MenuController : MonoBehaviour {
 		{
 			//physicsPlayer.SetMove (-physicsPlayer.transform.right);
 			print ("left");
-			physicsPlayer.SetMove (-Camera.main.transform.right);
-
+//			physicsPlayer.SetMove (-Camera.main.transform.right);
+			physicsPlayer.Rotate (-Vector3.up);
 		}
 
 		else if (moveOption == MoveMenuOption.right)
 		{
 			print ("right");
 			//physicsPlayer.SetMove (physicsPlayer.transform.right);
-			physicsPlayer.SetMove (Camera.main.transform.right);
+			//physicsPlayer.SetMove (Camera.main.transform.right);
+			physicsPlayer.Rotate (Vector3.up);
+
 		}
 	}
 
@@ -127,6 +129,12 @@ public class MenuController : MonoBehaviour {
 		{
 			print ("Switch to translate");
 			ResetCursorRotation ();
+		}
+
+		else if (menuType == SubMenuType.center)
+		{
+			print ("Center");
+			CenterMenu ();
 		}
 
 		else if (menuType == SubMenuType.escape)
